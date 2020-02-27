@@ -8,8 +8,8 @@ You'll need to do a few things before you can run the script:
 3. Import the module. Run `Import-Module -Name MicrosoftTeams` in your Powershell terminal.
 4. Authenticate to the API. Run `Connect-MicrosoftTeams` in your Powershell terminal.
 
-# How to use
+# How to use
 Open `Import-TeamsUsers.ps1` and modify the `$GroupId` and `$File` variables at the bottom, then execute the script from the command line.
 
-# Issues?
+# Issues?
 If you're having problems or have an idea for a new feature, please check [here](https://github.com/luketainton/Import-TeamsUsers/issues) to see if someone else is having the same problem, and open an issue if one doesn't already exist. If you can implement a fix or feature request, please file a pull request!
