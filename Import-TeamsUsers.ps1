@@ -46,4 +46,8 @@ function Import-TeamsUsers {
 $GroupId = ""
 $File = ""
 
-Import-TeamsUsers -GroupId $GroupId -File $File
+If ($GroupId -And $File) {
+	Import-TeamsUsers -GroupId $GroupId -File $File
+} Else {
+	Write-Host -ForegroundColor Red "`$GroupId and/or `$File missing."
+}
