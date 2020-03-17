@@ -1,7 +1,7 @@
 # Import-TeamsUsers
 A Powershell script that imports users from a CSV into a Microsoft Teams team.
 
-# Setting up your device
+# Setting up your device
 This script runs via PowerShell. If you're on Windows, you'll already have this. If not, please download it from the [releases page](https://github.com/PowerShell/PowerShell/releases). Once you've got PowerShell:
 1. Open PowerShell.
 2. Allow remote scripts to execute by running `Set-ExecutionPolicy RemoteSigned`. If you don't do this, the script won't run.
@@ -21,7 +21,7 @@ You'll need to do a few things before you can run the script:
 4. Modify the `$File` variables to the name of your CSV file.
 5. Run the script. 
 
-# Need help?
+# Need help?
 If you require assistance running the script, please [send me an email](mailto:luke@tainton.uk?subject=I%20need%20help%20running%20Import-TeamsUsers).
 
 # Issues? Want a new feature?
