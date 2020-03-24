@@ -40,7 +40,7 @@ Function Import-TeamsUsers {
         Clear-Host
         Write-Host -ForegroundColor Green "Getting your teams - please wait"
         $EligibleTeams = @()
-        Get-Team -User $Email | ForEach-Object {
+        Get-Team -User $Email -Verbose:$false | ForEach-Object {
             $CTeamId = $_.GroupId
             $CTeamName = $_.DisplayName
             If (Get-TeamUser -GroupId $CTeamId | Select-Object -Property User,Role | Where-Object {$_.User -eq $Email} | Where-Object {$_.Role -eq "owner"}) {
@@ -51,7 +51,7 @@ Function Import-TeamsUsers {
         }
         Clear-Host
         Write-Host "Teams that you own:"
-        $EligibleTeams | ForEach {[PSCustomObject]$_} | Format-Table 'GroupId', 'DisplayName' -AutoSize
+        $EligibleTeams | ForEach-Object {[PSCustomObject]$_} | Format-Table 'GroupId', 'DisplayName' -AutoSize
         $GroupId = Read-Host -Prompt "GroupId of the desired group"
 
         ##### ENROL USERS #####
@@ -69,16 +69,17 @@ Function Import-TeamsUsers {
                 } Catch [Microsoft.TeamsCmdlets.PowerShell.Custom.ErrorHandling.ApiException] {
                     Write-Host -ForegroundColor Red "Error adding user $User with role $Role"
                 }
-
+                Clear-Variable -Name User
+                Clear-Variable -Name Role
             }
+            Write-Host -ForegroundColor Green "$global:UsersAdded users added successfully."
         } Else {
             Write-Host -ForegroundColor Red "Aborting."
-            Exit
         }
     }
     
     End {
-        Write-Host -ForegroundColor Green "$global:UsersAdded users added successfully."
+        @('UserCount', 'UsersAdded', 'Consent', 'Users', 'GroupId') | ForEach-Object {Clear-Variable -Name $_}
         Disconnect-MicrosoftTeams
     }
 }
