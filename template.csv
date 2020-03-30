@@ -1,1 +1,3 @@
 email,role
+Test.Owner@example.com,owner
+Test.Member@example.com,member
