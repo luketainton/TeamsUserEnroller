@@ -6,7 +6,6 @@ Function Import-TeamsUsers {
 
     .DESCRIPTION
     Import-TeamsUsers is a Powershell function that will enrol users from a CSV file into a given Microsoft Teams group.
-    It has one required parameter: -File. 
 
     .PARAMETER File
     The path to the CSV file that contains your users. Can either be an absolute path or relative path.
