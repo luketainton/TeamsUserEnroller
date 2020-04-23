@@ -1,0 +1,9 @@
+mode: auto
+silent: false
+branchName: short
+branches:
+  - label: feature
+    prefix: feature/
+  - label: bug
+    prefix: bug/
+autoCloseIssue: true
