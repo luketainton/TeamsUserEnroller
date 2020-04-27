@@ -22,7 +22,7 @@ This module uses PowerShell, which is pre-installed on Windows. If you're not on
   ```powershell
   Set-ExecutionPolicy Bypass -Scope Process
   ```
-  then try running the command again. You may require administrative rights to do change the Execution Policy.
+  then try running the command again. You may require administrative rights to change the Execution Policy.
 </details>
 
 # Need help?
