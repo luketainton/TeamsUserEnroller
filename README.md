@@ -4,7 +4,7 @@ A Powershell module that imports users from a CSV into a Microsoft Teams group.
 # Setting up your device
 This module uses PowerShell, which is pre-installed on Windows. If you're not on Windows, please [download **PowerShell Core**](https://github.com/PowerShell/PowerShell/releases).
 1. Open PowerShell as an administrator.
-1. Install this module by running `Install-Module -Name TeamsUsersEnroller`. 
+1. Install this module by running `Install-Module -Name TeamsUserEnroller`. 
 
 # Running the script
 1. Create a CSV file containing your users and their desired roles. The first line must be the headers `email,role`, for example:
