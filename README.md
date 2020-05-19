@@ -13,7 +13,7 @@ This module uses PowerShell, which is pre-installed on Windows. If you're not on
    jbloggs@example.com,owner
    user@example.com,member
    ```
-1. Run `Import-TeamsUsers -File <FILE>`, where `<FILE>` is the path to the CSV file.
+1. Run `Import-TeamsUsers -File <FILE>`, where `<FILE>` is the path to the CSV file. You can add the `-Create` flag if you want to create a new team first.
 
 <details>
   <summary>If you can't run non-signed scripts</summary>
