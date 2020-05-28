@@ -59,7 +59,7 @@ Function Import-TeamsUsers {
             } Elseif ($NewTeamPriv -Eq "r") {
                 $NewTeamVis = "Private"
             }
-            $NewTeam = New-Team -DisplayName $NewTeamName -MailNickName $NewTeamName -Description "Testing team creation from PowerShell" -Visibility $NewTeamVis
+            $NewTeam = New-Team -DisplayName $NewTeamName -MailNickName $NewTeamName -Description $NewTeamDesc -Visibility $NewTeamVis
             $GroupId = $NewTeam.GroupId
         } Else {
             ##### GET USER'S TEAMS #####
