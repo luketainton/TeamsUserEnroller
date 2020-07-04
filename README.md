@@ -31,4 +31,4 @@ If you need assistance, please try the following:
 1. Check closed issues [here](https://github.com/luketainton/Import-TeamsUsers/issues?q=is%3Aissue+sort%3Aupdated-desc+is%3Aclosed).
 1. Open an issue [here](https://github.com/luketainton/Import-TeamsUsers/issues/new).
 
-Alternatively, you can [email](mailto:tue-users@lists.tainton.uk) the mailing list. You can also subscribe [here](https://lists.tainton.uk/mailman/listinfo/tue-users_lists.tainton.uk) to receive general announcements and assist other users.
+Alternatively, you can subscribe [here](https://lists.tainton.uk/mailman/listinfo/tue-users_lists.tainton.uk) to receive general announcements, ask questions, and assist other users. You must be subscribed to the list to be able to send email to it (I am working on this!)
