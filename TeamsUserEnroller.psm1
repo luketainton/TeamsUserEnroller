@@ -13,6 +13,9 @@ Function Import-TeamsUsers {
     .PARAMETER Create
     If specified, create a new Group first, then add the users from the CSV file.
 
+    .PARAMETER Delimiter
+    If specified, overrides the default CSV delimiter of ','.
+
     .EXAMPLE
     Import-TeamsUsers -File "users.csv"
 
@@ -24,14 +27,20 @@ Function Import-TeamsUsers {
         [parameter(Mandatory=$true, position=1, ParameterSetName='Params', HelpMessage="Specify CSV file")]
         [string]$File,
         [parameter(Mandatory=$false, position=2, ParameterSetName='Params', HelpMessage="Create new Teams group")]
-        [switch]$Create
+        [switch]$Create,
+        [parameter(Mandatory=$false, position=3, ParameterSetName='Params', HelpMessage="Override default CSV delimiter")]
+        [string]$Delimiter
     )
 
     Begin {
         $ErrorActionPreference = 'Stop'
         ##### IMPORT CSV FILE #####
         Try {
-            $Users = Import-CSV $File
+            If ($Delimiter) {
+                $Users = Import-CSV $File -Delimiter $Delimiter
+            } Else {
+                $Users = Import-CSV $File
+            }
         } Catch {
             Write-Host -ForegroundColor Red "$File is not a valid CSV file."
         }
