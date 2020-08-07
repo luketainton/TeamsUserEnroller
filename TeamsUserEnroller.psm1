@@ -39,6 +39,39 @@ Function Import-TeamsUsers {
 
     Begin {
         $ErrorActionPreference = 'Stop'
+
+        ##### CHECK FOR NEW VERSION #####
+        Try {
+            # Get information from GitHub Releases
+            $releases = Invoke-RestMethod -Method Get -Uri "https://api.github.com/repos/luketainton/TeamsUserEnroller/releases";
+            $rel = $releases[0];
+            $latest_version = $rel.tag_name -replace 'v', '';
+            $latest_version_changes = $rel.body;
+
+            # Get currently installed version
+            $current_version = (Get-Module TeamsUserEnroller | Select-Object Version).Version;
+
+            # Compare versions and alert user if newer version available
+            if ($current_version -lt $latest_version) {
+                Write-Host -ForegroundColor Yellow "A new version of TeamsUserEnroller has been released!";
+                Write-Host -ForegroundColor Yellow "Latest version: $latest_version";
+                Write-Host -ForegroundColor Yellow "Installed version: $current_version";
+                Write-Host -ForegroundColor Yellow "`n$latest_version_changes";
+                $Consent = Read-Host -Prompt "`nWould you like to update now? [y/N]"
+                If ($Consent -eq "y" -Or $Consent -eq "Y") {
+                    Update-Module -Name TeamsUserEnroller -RequiredVersion "2.2.0";
+                    $after_update_ver = (Get-Module TeamsUserEnroller | Select-Object Version).Version;
+                    if ($after_update_ver -eq $latest_version) {
+                        Write-Host -ForegroundColor Green "Update completed.";
+                    } Else {
+                        Write-Host -ForegroundColor Red "Update failed. Please update manually.";
+                    }
+                }
+            }
+        } Catch {
+            Write-Host -ForegroundColor Red "An error occurred while checking for updates. Continuing.";
+        }
+
         ##### IMPORT CSV FILE #####
         Try {
             $ImportCmd = "Import-CSV $File"
