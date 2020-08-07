@@ -16,6 +16,9 @@ Function Import-TeamsUsers {
     .PARAMETER Delimiter
     If specified, overrides the default CSV delimiter of ','.
 
+    .PARAMETER Encoding
+    If specified, manually sets the encoding of the CSV file.
+
     .EXAMPLE
     Import-TeamsUsers -File "users.csv"
 
@@ -29,27 +32,35 @@ Function Import-TeamsUsers {
         [parameter(Mandatory=$false, position=2, ParameterSetName='Params', HelpMessage="Create new Teams group")]
         [switch]$Create,
         [parameter(Mandatory=$false, position=3, ParameterSetName='Params', HelpMessage="Override default CSV delimiter")]
-        [string]$Delimiter
+        [string]$Delimiter,
+        [parameter(Mandatory=$false, position=4, ParameterSetName='Params', HelpMessage="Manually set CSV encoding")]
+        [string]$Encoding
     )
 
     Begin {
         $ErrorActionPreference = 'Stop'
         ##### IMPORT CSV FILE #####
         Try {
-            If ($Delimiter) {
-                $Users = Import-CSV $File -Delimiter $Delimiter
-            } Else {
-                $Users = Import-CSV $File
-            }
+            $ImportCmd = "Import-CSV $File"
+            If ($Delimiter) { $ImportCmd = $ImportCmd + " -Delimiter $Delimiter" }
+            If ($Encoding) { $ImportCmd = $ImportCmd + " -Encoding $Encoding" }
+            $Users = Invoke-Expression $ImportCmd
         } Catch {
             Write-Host -ForegroundColor Red "$File is not a valid CSV file."
+            Exit
         }
         
 
         ##### CHECK MODULE IS INSTALLED AND IMPORTED #####
         if (Get-Module -ListAvailable -Name MicrosoftTeams) {
-            Import-Module -Name MicrosoftTeams
-            $Email = (Connect-MicrosoftTeams -Verbose:$false).Account
+            try {
+                Import-Module -Name MicrosoftTeams
+                $Email = (Connect-MicrosoftTeams -Verbose:$false).Account
+            } Catch {
+                Write-Host -ForegroundColor Red "There was an error during authentication."
+                Write-Host "If you're not on Windows and use Multi-Factor Authentication, please manually pass the MFA check in your browser, then try again."
+                Exit
+            }
         } else {
             Write-Host -ForegroundColor Red "Module MicrosoftTeams doesn't exist. Please run 'Install-Module -Name MicrosoftTeams' and retry."
             Exit
