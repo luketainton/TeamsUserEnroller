@@ -15,15 +15,13 @@ This module uses PowerShell, which is pre-installed on Windows. If you're not on
    ```
 1. Run `Import-TeamsUsers -File <FILE>`, where `<FILE>` is the path to the CSV file. You can add the `-Create` flag if you want to create a new team first.
 
-<details>
-  <summary>If you can't run non-signed scripts</summary>
-  If your policy requires scripts to be digitally signed, run
+### If you can't run non-signed scripts
+If your policy requires scripts to be digitally signed, run
 
   ```powershell
   Set-ExecutionPolicy Bypass -Scope Process
   ```
   then try running the command again. You may require administrative rights to change the Execution Policy.
-</details>
 
 # Need help?
 If you need assistance, please try the following:
