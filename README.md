@@ -28,5 +28,3 @@ If you need assistance, please try the following:
 1. See the help documentation by running `Get-Help Import-TeamsUsers`.
 1. Check closed issues [here](https://github.com/luketainton/Import-TeamsUsers/issues?q=is%3Aissue+sort%3Aupdated-desc+is%3Aclosed).
 1. Open an issue [here](https://github.com/luketainton/Import-TeamsUsers/issues/new).
-
-Alternatively, you can subscribe [here](https://lists.tainton.uk/mailman/listinfo/tue-users_lists.tainton.uk) to receive general announcements, ask questions, and assist other users. You must be subscribed to the list to be able to send email to it (I am working on this!)
